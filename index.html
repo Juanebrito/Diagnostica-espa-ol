@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diagnóstica Lengua Española</title>
+    <style>
+        /* Reset básico y fuente */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            background: linear-gradient(145deg, #f8f4f0 0%, #e8e0d8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Tarjeta principal */
+        .card {
+            max-width: 700px;
+            width: 100%;
+            background: rgba(255, 252, 248, 0.85);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border-radius: 48px;
+            padding: 48px 40px 56px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.30),
+                        0 0 0 1px rgba(255, 245, 235, 0.5) inset;
+            transition: transform 0.2s ease;
+            text-align: center;
+        }
+
+        /* Encabezado */
+        .header h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #2b1f18;
+            margin-bottom: 6px;
+        }
+
+        .header .subhead {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #5a4a3e;
+            background: #ede7e0;
+            display: inline-block;
+            padding: 6px 24px;
+            border-radius: 40px;
+            margin-top: 4px;
+            letter-spacing: 0.3px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .header .profesor {
+            margin-top: 16px;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #3d2e24;
+            background: #e5dcd2;
+            display: inline-block;
+            padding: 8px 28px;
+            border-radius: 40px;
+            letter-spacing: 0.5px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .divider {
+            width: 80px;
+            height: 3px;
+            background: #c9b7a8;
+            margin: 24px auto 28px;
+            border-radius: 6px;
+        }
+
+        /* Grid de enlaces */
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 18px;
+            margin-top: 8px;
+        }
+
+        .link-card {
+            display: block;
+            background: #ffffffdd;
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            padding: 22px 12px;
+            border-radius: 28px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #2b1f18;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04),
+                        0 0 0 1px rgba(255, 245, 235, 0.6) inset;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(200, 180, 165, 0.15);
+            letter-spacing: 0.3px;
+        }
+
+        .link-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            background: #ffffff;
+            box-shadow: 0 16px 30px -8px rgba(60, 40, 30, 0.15),
+                        0 0 0 1px #dccfc4 inset;
+            border-color: #b8a89a;
+        }
+
+        .link-card:active {
+            transform: scale(0.97);
+            transition-duration: 0.06s;
+        }
+
+        /* Colores suaves por curso (detalle sutil) */
+        .link-card[data-curso="A"] {
+            border-left: 5px solid #b8a08e;
+        }
+        .link-card[data-curso="B"] {
+            border-left: 5px solid #a89482;
+        }
+        .link-card[data-curso="C"] {
+            border-left: 5px solid #9a8776;
+        }
+        .link-card[data-curso="D"] {
+            border-left: 5px solid #8c7a6a;
+        }
+
+        .link-card .curso {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: #6a5a4e;
+            margin-top: 4px;
+            letter-spacing: 0.2px;
+        }
+
+        /* Pie */
+        .footer-note {
+            margin-top: 38px;
+            font-size: 0.85rem;
+            color: #7f6e60;
+            border-top: 1px solid #e2d6cc;
+            padding-top: 24px;
+            letter-spacing: 0.4px;
+            opacity: 0.8;
+        }
+
+        /* Ajustes móviles */
+        @media (max-width: 480px) {
+            .card {
+                padding: 32px 20px 40px;
+                border-radius: 32px;
+            }
+            .header h1 {
+                font-size: 2.0rem;
+            }
+            .header .subhead {
+                font-size: 1.0rem;
+                padding: 4px 18px;
+            }
+            .links-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+            .link-card {
+                padding: 18px 8px;
+                font-size: 1.0rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .links-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Encabezado -->
+        <div class="header">
+            <h1>📘 Diagnóstica<br>Lengua Española</h1>
+            <div class="subhead">3er curso · Nivel secundario</div>
+            <div class="profesor">Prof. José Miguel Marte</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Enlaces a formularios -->
+        <div class="links-grid">
+            <a href="https://forms.gle/NPfQx3RZkFNC4zjN8"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="link-card"
+               data-curso="A">
+                3ro. A
+                <span class="curso">Formulario</span>
+            </a>
+
+            <a href="https://forms.gle/25cTKGsjuJ3ZW9Gh6"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="link-card"
+               data-curso="B">
+                3ro. B
+                <span class="curso">Formulario</span>
+            </a>
+
+            <a href="https://forms.gle/7ztmoQZxuDGzeZsd6"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="link-card"
+               data-curso="C">
+                3ro. C
+                <span class="curso">Formulario</span>
+            </a>
+
+            <a href="https://forms.gle/UimHNAyEGCB2QLwu5"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="link-card"
+               data-curso="D">
+                3ro. D
+                <span class="curso">Formulario</span>
+            </a>
+        </div>
+
+        <div class="footer-note">
+            ⏱️ Diagnóstico · Lengua Española
+        </div>
+    </div>
+
+</body>
+</html>
